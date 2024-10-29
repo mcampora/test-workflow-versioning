@@ -20,10 +20,10 @@ dependencies {
     testImplementation libs.junit
 
     // This dependency is one major behind
-    //implementation 'com.google.guava:guava:32.+'
+    implementation 'com.google.guava:guava:32.+'
 
     // This dependency is one minor behind
-    implementation 'com.google.guava:guava:33.3.1-jre'
+    //implementation 'com.google.guava:guava:33.2.1-jre'
 
     // This dependency is up to date
     //implementation 'com.google.guava:guava:33.+'

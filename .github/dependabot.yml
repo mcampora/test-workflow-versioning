@@ -7,6 +7,16 @@ updates:
     directory: "/app" # Location of package manifests
     schedule:
       interval: "daily"
-    ignore:
-      - dependency-name: "*"
-        update-types: ["version-update:semver-major"]
+
+    # you can limit dependabot versions to minor upgrades
+    #ignore:
+    #  - dependency-name: "*"
+    #    update-types: ["version-update:semver-major"]
+
+    # you can group updates in one PR
+    groups:
+       # Specify a name for the group, which will be used in pull request titles and branch names
+       dependencies:
+          applies-to: version-updates
+          patterns:
+            - "*"

@@ -59,6 +59,18 @@ jobs:
     - name: Test with Gradle Wrapper
       run: ./gradlew test
 
+  increment:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+  automerge:
+    needs: increment
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
   dependency-submission:
     runs-on: ubuntu-latest
     permissions:

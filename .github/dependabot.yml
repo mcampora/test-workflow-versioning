@@ -6,6 +6,7 @@ updates:
 
   - package-ecosystem: "gradle"
     directory: "/app" 
+    target-branch: "main"
     schedule:
       interval: "daily"
     labels:
@@ -19,3 +20,7 @@ updates:
           applies-to: version-updates
           patterns:
             - "*"
+
+  # if we work on a distinct branch for major releases (ex. next-major)
+  # we can create a separate dependabot configuration for major upgrades
+  # excluding minor and patch upgrades

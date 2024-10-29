@@ -3,20 +3,35 @@
 
 version: 2
 updates:
-  - package-ecosystem: "gradle" # See documentation for possible values
-    directory: "/app" # Location of package manifests
+
+  - package-ecosystem: "gradle"
+    directory: "/app" 
     schedule:
       interval: "daily"
+    labels:
+      - "minors"
+      - "dependencies"
+    ignore: # you can limit dependabot versions to minor upgrades
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    groups: # you can group updates in one PR
+       minors: # Specify a name for the group, which will be used in pull request titles and branch names
+          applies-to: version-updates
+          patterns:
+            - "*"
 
-    # you can limit dependabot versions to minor upgrades
-    #ignore:
-    #  - dependency-name: "*"
-    #    update-types: ["version-update:semver-major"]
-
-    # you can group updates in one PR
-    groups:
-       # Specify a name for the group, which will be used in pull request titles and branch names
-       dependencies:
+  - package-ecosystem: "gradle"
+    directory: "/app" 
+    schedule:
+      interval: "daily"
+    labels:
+      - "majors"
+      - "dependencies"
+    ignore: # you can limit dependabot versions to minor upgrades
+      - dependency-name: "*"
+        update-types: ["version-update:semver-minor", "version-update:semver-patch"]
+    groups: # you can group updates in one PR
+       majors: # Specify a name for the group, which will be used in pull request titles and branch names
           applies-to: version-updates
           patterns:
             - "*"

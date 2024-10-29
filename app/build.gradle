@@ -19,8 +19,17 @@ dependencies {
     // Use JUnit test framework.
     testImplementation libs.junit
 
-    // This dependency is used by the application.
-    implementation libs.guava
+    // This dependency is one major behind
+    //implementation 'com.google.guava:guava:32.+'
+
+    // This dependency is one minor behind
+    //implementation 'com.google.guava:guava:33.2.1-jre'
+
+    // This dependency is up to date
+    implementation 'com.google.guava:guava:33.+'
+
+    // to see the dependency tree
+    //./gradlew :app:dependencies
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

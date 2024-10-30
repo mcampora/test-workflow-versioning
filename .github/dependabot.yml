@@ -21,7 +21,7 @@ updates:
           applies-to: version-updates
           patterns:
             - "*"
-
+ 
   # manage major upgrades on a fixed branch used to prepare the next major version of the project (ex. next-major)
   - package-ecosystem: "gradle"
     directory: "/app" 

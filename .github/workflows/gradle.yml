@@ -9,7 +9,7 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "next-major" ]
   pull_request:
     branches: [ "main", "next-major", "dependabot/**" ]
 

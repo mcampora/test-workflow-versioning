@@ -4,6 +4,7 @@
 version: 2
 updates:
 
+  # manage minor upgrades on the main branch
   - package-ecosystem: "gradle"
     directory: "/app" 
     target-branch: "main"
@@ -12,15 +13,29 @@ updates:
     labels:
       - "all"
       - "dependencies"
-    #ignore: # you can limit dependabot versions to minor upgrades
-    #  - dependency-name: "*"
-    #    update-types: ["version-update:semver-major"]
+    ignore: # you can limit dependabot versions to minor upgrades
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups: # you can group updates in one PR
-       all: # Specify a name for the group, which will be used in pull request titles and branch names
+       minors: # Specify a name for the group, which will be used in pull request titles and branch names
           applies-to: version-updates
           patterns:
             - "*"
 
-  # if we work on a distinct branch for major releases (ex. next-major)
-  # we can create a separate dependabot configuration for major upgrades
-  # excluding minor and patch upgrades
+  # manage major upgrades on a fixed branch used to prepare the next major version of the project (ex. next-major)
+  - package-ecosystem: "gradle"
+    directory: "/app" 
+    target-branch: "next-major"
+    schedule:
+      interval: "daily"
+    labels:
+      - "all"
+      - "dependencies"
+    ignore: # you can limit dependabot versions to major upgrades
+      - dependency-name: "*"
+        update-types: ["version-update:semver-minor", "version-update:semver-patch"]
+    groups: # you can group updates in one PR
+       majors: # Specify a name for the group, which will be used in pull request titles and branch names
+          applies-to: version-updates
+          patterns:
+            - "*"

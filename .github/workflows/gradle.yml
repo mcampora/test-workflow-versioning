@@ -74,7 +74,7 @@ jobs:
     - name: Tag the commit
       run: |
         git branch --show-current
-        git pull
+        git pull origin ${GITHUB_HEADREF}
         git tag -f new_minor
         git push --follow-tags
 

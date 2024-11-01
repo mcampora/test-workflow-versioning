@@ -67,22 +67,30 @@ jobs:
       contents: write
     if: contains(github.head_ref, 'dependabot') && contains(github.head_ref, 'minors')
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
     - name: Print the branch name for traceability
       env:
         GITHUB_HEADREF: ${{ github.head_ref }}
-      run: |
-        echo "$GITHUB_HEADREF is a dependabot branch that can be merged automatically"
-    - name: Create tag
-      uses: actions/github-script@v7
-      with:
-        script: |
-          github.rest.git.createRef({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            ref: 'refs/tags/new_minor',
-            sha: context.sha
-          })
+      run: echo "$GITHUB_HEADREF is a dependabot branch that can be merged automatically"
+    - name: Move the tag
+      run: git tag -f new_minor
+    - name: Push the tag
+      run: git push --follow-tags
+
+    #- name: Create tag
+    #  uses: actions/github-script@v7
+    #  with:
+    #    script: |
+    #      github.rest.git.createRef({
+    #        owner: context.repo.owner,
+    #        repo: context.repo.repo,
+    #        ref: 'refs/tags/new_minor',
+    #        sha: context.sha
+    #      })
+
+    # gh pr comment <number> -b "@dependabot merge"
+
     #- name: Tag the commit
     #  run: |
     #    git config user.name "Marc Campora"

@@ -65,12 +65,15 @@ jobs:
     runs-on: ubuntu-latest
     if: contains(github.head_ref, 'dependabot') && contains(github.head_ref, 'minors')
     steps:
+    - uses: actions/checkout@v4
     - name: Print the branch name for traceability
       env:
         GITHUB_HEADREF: ${{ github.head_ref }}
       run: |
-        git tag -f new_minor
         echo "$GITHUB_HEADREF is a dependabot branch that can be merged automatically"
+    - name: Tag the commit
+      run: |
+        git tag -f new_minor
 
   dependency-submission:
     runs-on: ubuntu-latest

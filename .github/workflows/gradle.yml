@@ -63,6 +63,8 @@ jobs:
   automerge: # if we we are on a dependabot branch fixing a minor version, we can merge it automatically
     #needs: increment
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     if: contains(github.head_ref, 'dependabot') && contains(github.head_ref, 'minors')
     steps:
     - uses: actions/checkout@v4
@@ -71,18 +73,28 @@ jobs:
         GITHUB_HEADREF: ${{ github.head_ref }}
       run: |
         echo "$GITHUB_HEADREF is a dependabot branch that can be merged automatically"
-    - name: Tag the commit
-      run: |
-        git config user.name "Marc Campora"
-        git config user.email "mcampora@ebsco.com"
-        git branch --show-current
-        # git switch ${{ github.head_ref }}
-        # git branch --show-current
-        # git pull
-        pwd
-        ls -al
-        git tag -f new_minor
-        git push --follow-tags
+    - name: Create tag
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.git.createRef({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            ref: 'refs/tags/new_minor',
+            sha: context.sha
+          })
+    #- name: Tag the commit
+    #  run: |
+    #    git config user.name "Marc Campora"
+    #    git config user.email "mcampora@ebsco.com"
+    #    git branch --show-current
+    #    # git switch ${{ github.head_ref }}
+    #    # git branch --show-current
+    #    # git pull
+    #    pwd
+    #    ls -al
+    #    git tag -f new_minor
+    #    git push --follow-tags
 
   # dependency-submission:
   #   runs-on: ubuntu-latest

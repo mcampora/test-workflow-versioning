@@ -67,9 +67,9 @@ jobs:
     steps:
     - name: Check the branch name
       env:
-        GITHUB_REF: ${{ github.ref }}
+        GITHUB_HEADREF: ${{ github.head_ref }}
       run: |
-        echo "$GITHUB_REF"
+        echo "$GITHUB_HEADREF"
         echo "We are on a dependabot branch that can be merged automatically"
 
   dependency-submission:

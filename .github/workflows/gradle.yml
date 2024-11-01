@@ -76,7 +76,7 @@ jobs:
         git config user.name "Marc Campora"
         git config user.email "mcampora@ebsco.com"
         git branch --show-current
-        git checkout ${{ github.head_ref }}
+        git switch ${{ github.head_ref }}
         git branch --show-current
         git pull
         pwd

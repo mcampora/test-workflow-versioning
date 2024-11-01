@@ -73,10 +73,10 @@ jobs:
         echo "$GITHUB_HEADREF is a dependabot branch that can be merged automatically"
     - name: Tag the commit
       run: |
+        git config user.name "Marc Campora"
+        git config user.email "mcampora@ebsco.com"
         pwd
         ls -al
-        git checkout ${GITHUB_HEADREF}
-        git branch --show-current
         git tag -f new_minor
         git push --follow-tags
 

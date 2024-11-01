@@ -51,26 +51,25 @@ jobs:
   #   - name: Test with Gradle Wrapper
   #     run: ./gradlew test
 
-  increment:
-    #needs: test
-    runs-on: ubuntu-latest
-    steps:
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
+  #increment:
+  #  #needs: test
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #  - name: Dump GitHub context
+  #    env:
+  #      GITHUB_CONTEXT: ${{ toJson(github) }}
+  #    run: echo "$GITHUB_CONTEXT"
 
-  automerge:
+  automerge: # if we we are on a dependabot branch fixing a minor version, we can merge it automatically
     #needs: increment
     runs-on: ubuntu-latest
     if: contains(github.head_ref, 'dependabot') && contains(github.head_ref, 'minors')
     steps:
-    - name: Check the branch name
+    - name: Print the branch name for traceability
       env:
         GITHUB_HEADREF: ${{ github.head_ref }}
       run: |
-        echo "$GITHUB_HEADREF"
-        echo "We are on a dependabot branch that can be merged automatically"
+        echo "$GITHUB_HEADREF is a dependabot branch that can be merged automatically"
 
   dependency-submission:
     runs-on: ubuntu-latest

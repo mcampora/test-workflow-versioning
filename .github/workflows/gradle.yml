@@ -76,9 +76,9 @@ jobs:
         git config user.name "Marc Campora"
         git config user.email "mcampora@ebsco.com"
         git branch --show-current
-        git switch ${{ github.head_ref }}
-        git branch --show-current
-        git pull
+        # git switch ${{ github.head_ref }}
+        # git branch --show-current
+        # git pull
         pwd
         ls -al
         git tag -f new_minor

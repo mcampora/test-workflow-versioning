@@ -63,7 +63,7 @@ jobs:
   automerge:
     #needs: increment
     runs-on: ubuntu-latest
-    if: contains(github.ref, 'minor')
+    if: contains(github.head_ref, 'dependabot') && contains(github.head_ref, 'minors')
     steps:
     - name: Check the branch name
       env:

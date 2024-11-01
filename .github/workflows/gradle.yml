@@ -65,7 +65,7 @@ jobs:
     if: contains('minor', ${{ github.ref }})
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - run: echo "We are on a dependabot branch that can be merged automatically"
 
   dependency-submission:
     runs-on: ubuntu-latest

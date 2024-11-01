@@ -78,7 +78,7 @@ jobs:
             repo: context.repo.repo,
             ref: 'refs/tags/new_minor',
             sha: context.sha,
-            force: 'yes'
+            force: true
           })
 
     # gh pr comment <number> -b "@dependabot merge"

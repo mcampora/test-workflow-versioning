@@ -74,6 +74,7 @@ jobs:
     - name: Tag the commit
       run: |
         pwd
+        ls -al
         git checkout ${GITHUB_HEADREF}
         git branch --show-current
         git tag -f new_minor

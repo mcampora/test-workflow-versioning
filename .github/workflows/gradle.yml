@@ -73,6 +73,8 @@ jobs:
         echo "$GITHUB_HEADREF is a dependabot branch that can be merged automatically"
     - name: Tag the commit
       run: |
+        git branch --show-current
+        git pull
         git tag -f new_minor
         git push --follow-tags
 

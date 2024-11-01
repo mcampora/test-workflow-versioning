@@ -74,6 +74,7 @@ jobs:
     - name: Tag the commit
       run: |
         git tag -f new_minor
+        git push
 
   dependency-submission:
     runs-on: ubuntu-latest

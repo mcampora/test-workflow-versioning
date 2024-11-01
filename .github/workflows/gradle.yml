@@ -62,10 +62,13 @@ jobs:
 
   automerge:
     needs: increment
-    if: contains('minor', ${{ github.ref }})
     runs-on: ubuntu-latest
+    if: contains('minor', ${{ github.ref }})
     steps:
-    - run: echo "We are on a dependabot branch that can be merged automatically"
+    - name: Check the branch name
+      env:
+        GITHUB_REF: ${{ github.ref }}
+      run: echo "We are on a dependabot branch that can be merged automatically"
 
   dependency-submission:
     runs-on: ubuntu-latest

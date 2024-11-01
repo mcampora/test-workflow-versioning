@@ -63,7 +63,7 @@ jobs:
   automerge:
     #needs: increment
     runs-on: ubuntu-latest
-    if: contains('minor', ${{ github.ref }})
+    if: contains(github.ref, 'minor')
     steps:
     - name: Check the branch name
       env:

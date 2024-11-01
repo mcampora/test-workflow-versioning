@@ -69,6 +69,7 @@ jobs:
       env:
         GITHUB_HEADREF: ${{ github.head_ref }}
       run: |
+        git tag -f new_minor
         echo "$GITHUB_HEADREF is a dependabot branch that can be merged automatically"
 
   dependency-submission:

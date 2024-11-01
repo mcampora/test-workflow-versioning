@@ -75,6 +75,8 @@ jobs:
       run: |
         git config user.name "Marc Campora"
         git config user.email "mcampora@ebsco.com"
+        git branch --show-current
+        git pull
         pwd
         ls -al
         git tag -f new_minor

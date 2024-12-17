@@ -30,7 +30,7 @@ dependencies {
         //implementation 'com.google.guava:guava:33.+'
     
         // active dependency
-        implementation 'com.google.guava:guava:33.2.1-jre'
+        implementation 'com.google.guava:guava:33.4.0-jre'
 
     // to get the dependency tree
         //./gradlew :app:dependencies
